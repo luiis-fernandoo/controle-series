@@ -14,16 +14,20 @@ class SeriesCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public string $serieNome = '';
+    public int $serieId = 0;
+    public int $serieSeasonsQnt = 0;
+    public int $serieEpisodesPerSeason = 0;
     /**
      * Create a new event instance.
      *
      * @return void
      */
     public function __construct(
-        public readonly string $serieNome,
-        public readonly int $serieId,
-        public readonly int $serieSeasonsQnt,
-        public readonly int $serieEpisodesPerSeason
+        $serieNome,
+        $serieId,
+        $serieSeasonsQnt,
+        $serieEpisodesPerSeason
     )
     {
         //

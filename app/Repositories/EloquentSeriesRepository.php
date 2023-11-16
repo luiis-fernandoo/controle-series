@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Requests\SeriesFormResquest;
+use App\Models\Cast;
 use App\Models\Episode;
 use App\Models\Season;
 use App\Models\Serie;
@@ -15,6 +16,15 @@ class EloquentSeriesRepository implements SeriesRepository{
     {
         return DB::transaction(function()use($request){
             $series = Serie::create($request->all());
+
+            $cast = $request->nomeAtor;
+
+            foreach($cast as $casts){
+                $actor = new Cast();
+                $actor->series_id = $series->id;
+                $actor->nomeAtor = $casts;
+                $actor->save();
+            }
 
             $seasons = [];
             for($i = 1; $i <= $request->seasonsQnt; $i++){

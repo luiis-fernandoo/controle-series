@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cast;
 use App\Models\Season;
 use App\Models\Serie;
 use Illuminate\Http\Request;
@@ -14,6 +15,8 @@ class SeasonController extends Controller
         ->where('series_id', $series)
         ->get();
         
-        return view('Seasons.index')->with('seasons', $seasons);
+        $cast = Cast::query()->where('series_id', $series)->get();
+
+        return view('Seasons.index')->with('seasons', $seasons)->with('cast', $cast);
     }
 }

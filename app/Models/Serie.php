@@ -20,6 +20,10 @@ class Serie extends Model
         return $this->hasMany(Season::class, 'series_id');
     }
 
+    public function cast(){
+        return $this->hasMany(Cast::class, 'series_id');
+    }
+
     public function episodes(){
 
         return $this->hasManyThrough(Episode::class, Season::class, 'series_id');

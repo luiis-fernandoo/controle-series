@@ -11,16 +11,21 @@ class SeriesCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public string $nomeSerie = '';
+    public string $qntSeasons = '';
+    public int $episodiosPorTemporada = 0;
+    public int $id = 0;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
     public function __construct(
-        public string $nomeSerie,
-        public string $qntSeasons,
-        public int $episodiosPorTemporada,
-        public int $id
+        $nomeSerie,
+        $qntSeasons,
+        $episodiosPorTemporada,
+        $id
     )
     {
 
